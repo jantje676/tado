@@ -42,6 +42,7 @@ pytest = "*"
 pytest-mock = "*"
 pytest-cov = "*"
 pytest-socket = "*"
+pandas = "^2.3.0"
 
 [tool.poetry.extras]
 dev = ["pre-commit", "pytype", "types-requests"]
