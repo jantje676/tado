@@ -6,4 +6,4 @@ COPY README.md ./
 COPY PyTado ./PyTado
 RUN poetry install
 COPY . .
-CMD ["poetry", "run", "python", "hello_world.py"]
+CMD ["poetry", "run", "python", "main.py"]
