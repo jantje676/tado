@@ -1,9 +1,9 @@
 steps:
-  - name: 'gcr.io/cloud-builders/docker'
-    args: ['build', '-t', 'gcr.io/curious-destiny-463712-a9/tado:latest', '.']
+  - name: gcr.io/cloud-builders/docker
+    args: ["pull", "europe-west4-docker.pkg.dev/curious-destiny-463712-a9/tadorepo/tadoimg:tadotag"]
 
-images:
-  - 'gcr.io/curious-destiny-463712-a9/tado:latest'
+  - name: gcr.io/cloud-builders/docker
+    args: ["run", "europe-west4-docker.pkg.dev/curious-destiny-463712-a9/tadorepo/tadoimg:tadotag"]
 
 
 options:
