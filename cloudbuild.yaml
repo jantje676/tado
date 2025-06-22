@@ -1,0 +1,10 @@
+steps:
+  - name: 'gcr.io/cloud-builders/docker'
+    args: ['build', '-t', 'gcr.io/curious-destiny-463712-a9/tado:latest', '.']
+
+images:
+  - 'gcr.io/curious-destiny-463712-a9/tado:latest'
+
+
+options:
+  logging: CLOUD_LOGGING_ONLY
