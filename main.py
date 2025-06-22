@@ -46,16 +46,33 @@ def set_temperature(tado, zone_id, file="input_data/temp_schema.csv"):
 
 def main() -> None:
     """Retrieve all zones, once successfully logged in"""
-    tado = Tado()
 
-    print("Device activation status: ", tado.device_activation_status())
+    refresh_token = "8pAvy6KIBXoMQtUCUXhDn0gVaIYbGy_h_gOmsahOeKFKq9MGIp-TnToMvWwoAzjC"
+
+    tado = Tado(saved_refresh_token=refresh_token)
+
+    status = tado.device_activation_status()
+
+
+    print("Device activation status: ", status)
     print("Device verification URL: ", tado.device_verification_url())
 
-    print("Starting device activation")
-    tado.device_activation()
+    if status == "PENDING":
+        url = tado.device_verification_url()
+        print("Device verification URL: ", tado.device_verification_url())
 
-    print("Device activation status: ", tado.device_activation_status())
+        webbrowser.open_new_tab(url)
 
+        tado.device_activation()
+
+        status = tado.device_activation_status()
+
+    if status == "COMPLETED":
+        print("Login successful")
+    else:
+        print(f"Login status is {status}")
+        print("Starting device activation")
+   
     zones = tado.get_zones()
 
     heating_zone = next(zone for zone in zones if zone["type"] == "HEATING")
